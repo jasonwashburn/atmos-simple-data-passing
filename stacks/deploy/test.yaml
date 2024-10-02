@@ -26,5 +26,7 @@ components:
         # results in a string object with a value of "<no value>"
         test_not_actually_null_string: '{{ (atmos.Component "first" .stack).outputs.first_output.test_null_string }}'
 
+        # Pass a string of json as a string
         test_json_string: '{{ (atmos.Component "first" .stack).outputs.first_output.test_json_string | toJson }}'
+        # Turn a string of json into a terraform object variable
         test_object_from_json_string: '{{ (atmos.Component "first" .stack).outputs.first_output.test_json_string }}'
