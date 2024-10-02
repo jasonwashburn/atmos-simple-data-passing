@@ -11,7 +11,8 @@ variable "input_from_first" {
       key2 = number
       key3 = bool
     })
-    test_null = any
+    test_null        = any
+    test_null_string = string
   })
 }
 
@@ -51,6 +52,14 @@ variable "test_null" {
   type = any
 }
 
+variable "test_null_string" {
+  type = string
+}
+
+variable "test_not_actually_null_string" {
+  type = string
+}
+
 output "second_output" {
   value = var.input_from_first
 }
@@ -85,4 +94,12 @@ output "test_object" {
 
 output "test_null" {
   value = var.test_null
+}
+
+output "test_null_string" {
+  value = var.test_null_string
+}
+
+output "test_not_actually_null_string" {
+  value = var.test_not_actually_null_string
 }

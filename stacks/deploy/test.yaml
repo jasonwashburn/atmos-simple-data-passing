@@ -19,4 +19,9 @@ components:
         test_map: '{{ (atmos.Component "first" .stack).outputs.first_output.test_map | toJson }}'
         test_tuple: '{{ (atmos.Component "first" .stack).outputs.first_output.test_tuple | toJson }}'
         test_object: '{{ (atmos.Component "first" .stack).outputs.first_output.test_object | toJson }}'
-        test_null: '{{ (atmos.Component "first" .stack).outputs.first_output.test_null }}'
+        test_null: '{{ (atmos.Component "first" .stack).outputs.first_output.test_null | toJson }}'
+        test_null_string: '{{ (atmos.Component "first" .stack).outputs.first_output.test_null_string | toJson }}'
+
+        # (Incorrect Example) Passing null values in as a templated value without using toJson or toRawJson
+        # results in a string object with a value of "<no value>"
+        test_not_actually_null_string: '{{ (atmos.Component "first" .stack).outputs.first_output.test_null_string }}'

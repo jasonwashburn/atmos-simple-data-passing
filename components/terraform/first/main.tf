@@ -14,6 +14,7 @@ output "first_output" {
       key2 = 2
       key3 = false
     }
-    test_null = null
+    test_null        = null
+    test_null_string = null
   }
 }
