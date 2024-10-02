@@ -13,6 +13,7 @@ variable "input_from_first" {
     })
     test_null        = any
     test_null_string = string
+    test_json_string = string
   })
 }
 
@@ -60,6 +61,18 @@ variable "test_not_actually_null_string" {
   type = string
 }
 
+variable "test_json_string" {
+  type = string
+}
+
+variable "test_object_from_json_string" {
+  type = object({
+    key1 = string
+    key2 = number
+    key3 = bool
+  })
+}
+
 output "second_output" {
   value = var.input_from_first
 }
@@ -102,4 +115,12 @@ output "test_null_string" {
 
 output "test_not_actually_null_string" {
   value = var.test_not_actually_null_string
+}
+
+output "test_json_string" {
+  value = var.test_json_string
+}
+
+output "test_object_from_json_string" {
+  value = var.test_object_from_json_string
 }

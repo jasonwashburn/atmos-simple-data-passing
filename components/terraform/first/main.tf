@@ -16,5 +16,6 @@ output "first_output" {
     }
     test_null        = null
     test_null_string = null
+    test_json_string = "{\"key1\": \"value1\", \"key2\": 2, \"key3\": true}"
   }
 }
