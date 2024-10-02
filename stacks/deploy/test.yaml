@@ -1,0 +1,22 @@
+vars:
+  stage: test
+
+components:
+  terraform:
+    first:
+      metadata:
+        component: first
+
+    second:
+      metadata:
+        component: second
+      vars:
+        input_from_first: '{{ (atmos.Component "first" .stack).outputs.first_output | toJson }}'
+        test_string: '{{ (atmos.Component "first" .stack).outputs.first_output.test_string }}'
+        test_number: '{{ (atmos.Component "first" .stack).outputs.first_output.test_number }}'
+        test_bool: '{{ (atmos.Component "first" .stack).outputs.first_output.test_bool }}'
+        test_list: '{{ (atmos.Component "first" .stack).outputs.first_output.test_list | toJson }}'
+        test_map: '{{ (atmos.Component "first" .stack).outputs.first_output.test_map | toJson }}'
+        test_tuple: '{{ (atmos.Component "first" .stack).outputs.first_output.test_tuple | toJson }}'
+        test_object: '{{ (atmos.Component "first" .stack).outputs.first_output.test_object | toJson }}'
+        test_null: '{{ (atmos.Component "first" .stack).outputs.first_output.test_null }}'

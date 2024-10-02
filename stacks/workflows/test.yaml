@@ -1,0 +1,17 @@
+name: Data passthrough test
+description: Test that data types can be passed through succesfully
+
+workflows:
+  plan-all:
+    description: |
+      Run 'terraform plan' on all components
+    steps:
+      - command: terraform plan first -s test
+      - command: terraform plan second -s test
+
+  apply-all:
+    description: |
+      Run 'terraform apply' on all components
+    steps:
+      - command: terraform apply first -auto-approve -s test
+      - command: terraform apply second -auto-approve -s test

@@ -1,0 +1,53 @@
+base_path: "./"
+
+components:
+  terraform:
+    command: "/opt/homebrew/bin/tofu"
+    base_path: "components/terraform"
+    apply_auto_approve: false
+    deploy_run_init: true
+    init_run_reconfigure: true
+    auto_generate_backend_file: false
+
+stacks:
+  base_path: "stacks"
+  included_paths:
+    - "deploy/**/*"
+  excluded_paths:
+    - "**/_defaults.yaml"
+  name_pattern: "{stage}"
+
+workflows:
+  # Can also be set using 'ATMOS_WORKFLOWS_BASE_PATH' ENV var, or '--workflows-dir' command-line arguments
+  # Supports both absolute and relative paths
+  base_path: "stacks/workflows"
+
+# Custom CLI commands
+commands:
+  - name: ip
+    description: Return my current IP
+    steps:
+      - curl -s https://ifconfig.me
+      - echo
+
+  # Use Nested Custom Commands
+  - name: "github"
+    commands:
+      - name: "status"
+        description: This command returns the number of stargazers for a GitHub repository
+        steps:
+          - curl -s https://www.githubstatus.com/api/v2/status.json | jq -r .status.description
+templates:
+  settings:
+    # Enable `Go` templates in Atmos stack manifests
+    enabled: true
+    delimiters: ["'{{", "}}'"]
+    evaluations: 2
+    sprig:
+      enabled: true
+    gomplate:
+      enabled: true
+      timeout: 5
+      datasources: {}
+logs:
+  file: "/dev/stderr"
